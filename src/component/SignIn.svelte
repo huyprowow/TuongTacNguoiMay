@@ -1,5 +1,4 @@
 <script>
-  import { prevent_default } from "svelte/internal";
   import {
     Form,
     FormGroup,
@@ -9,9 +8,12 @@
     Container,
     NavLink,
   } from "sveltestrap";
-  function handleSubmit(e){
+  function handleSubmit(e) {
     e.preventDefault();
-    window.location.href = "/";
+    if (e.target[0].value == "huy" && e.target[1].value == "huy") {
+      localStorage.setItem("username", e.target[0].value);
+      window.location.href = "/";
+    }
   }
 </script>
 
@@ -20,7 +22,7 @@
   <Form on:submit={handleSubmit}>
     <FormGroup>
       <Label for="username">Tài khoản</Label>
-      <Input type="text" id="username" placeholder="Tài khoản" />
+      <Input type="text" id="username" placeholder="Tài khoản (huy)" />
     </FormGroup>
     <FormGroup>
       <Label for="password">Mật khẩu</Label>
@@ -28,11 +30,11 @@
         type="password"
         name="password"
         id="password"
-        placeholder="Mật khẩu"
+        placeholder="Mật khẩu (huy)"
       />
     </FormGroup>
-      <Button style="float:right;" type="submit" color="primary">
-        Đăng Nhập
+    <Button style="float:right;" type="submit" color="primary">
+      Đăng Nhập
     </Button>
   </Form>
 </Container>

@@ -1,15 +1,18 @@
 <script>
   import { Row, Col, Card, CardBody, Container } from "sveltestrap";
-  export let product;
+  export let topProduct;
   export let title;
   export let bgStyle;
+  function viewAll() {
+    window.location.href = "/product";
+  }
 </script>
 
 <Container fluid class="px-3 mt-2 py-3" style={bgStyle}>
   <h5 class="px-2 d-inline-block m-0">{title}</h5>
-  <span class="float-end">Xem tất cả</span>
+  <span class="float-end" style="cursor: pointer;" on:click={viewAll} on:keydown={(e) => {if (e.key === 'Enter') viewAll()}}>Xem tất cả</span>
   <Row class="m-0 p-0">
-    {#each product as item, idx}
+    {#each topProduct as item, idx}
       <Col>
         <Card
           class="m-2 border-0"

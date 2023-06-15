@@ -3,30 +3,66 @@
     "name": "Laptop 1",
     "price": 1000,
     "image": "https://cdn.tgdd.vn/Products/Images/44/296789/hp-envy-x360-13-bf0090tu-i7-76b13pa-101122-093057-600x600.jpg",
-    "desc": "Parameters 1"
+    "desc": "Descriptions 1"
   },
   {
     "name": "Laptop 2",
     "price": 2000,
     "image": "https://cdn.tgdd.vn/Products/Images/44/296789/hp-envy-x360-13-bf0090tu-i7-76b13pa-101122-093057-600x600.jpg",
-    "desc": "Parameters 2"
+    "desc": "Descriptions 2"
   },
   {
     "name": "Laptop 3",
     "price": 3000,
     "image": "https://cdn.tgdd.vn/Products/Images/44/296789/hp-envy-x360-13-bf0090tu-i7-76b13pa-101122-093057-600x600.jpg",
-    "desc": "Parameters 3"
+    "desc": "Descriptions 3"
   },
   {
     "name": "Laptop 4",
     "price": 4000,
     "image": "https://cdn.tgdd.vn/Products/Images/44/296789/hp-envy-x360-13-bf0090tu-i7-76b13pa-101122-093057-600x600.jpg",
-    "desc": "Parameters 4"
+    "desc": "Descriptions 4"
   },
   {
     "name": "Laptop 5",
     "price": 5000,
     "image": "https://cdn.tgdd.vn/Products/Images/44/296789/hp-envy-x360-13-bf0090tu-i7-76b13pa-101122-093057-600x600.jpg",
-    "desc": "Parameters 5"
+    "desc": "Descriptions 5"
+  },
+  {
+    "name": "Laptop 6",
+    "price": 6000,
+    "image": "https://cdn.tgdd.vn/Products/Images/44/296789/hp-envy-x360-13-bf0090tu-i7-76b13pa-101122-093057-600x600.jpg",
+    "desc": "Descriptions 6"
+  },
+  {
+    "name": "Laptop 7",
+    "price": 7000,
+    "image": "https://cdn.tgdd.vn/Products/Images/44/296789/hp-envy-x360-13-bf0090tu-i7-76b13pa-101122-093057-600x600.jpg",
+    "desc": "Descriptions 7"
+  },
+  {
+    "name": "Laptop 8",
+    "price": 8000,
+    "image": "https://cdn.tgdd.vn/Products/Images/44/296789/hp-envy-x360-13-bf0090tu-i7-76b13pa-101122-093057-600x600.jpg",
+    "desc": "Descriptions 8"
+  },
+  {
+    "name": "Laptop 9",
+    "price": 9000,
+    "image": "https://cdn.tgdd.vn/Products/Images/44/296789/hp-envy-x360-13-bf0090tu-i7-76b13pa-101122-093057-600x600.jpg",
+    "desc": "Descriptions 9"
+  },
+  {
+    "name": "Laptop 10",
+    "price": 10000,
+    "image": "https://cdn.tgdd.vn/Products/Images/44/296789/hp-envy-x360-13-bf0090tu-i7-76b13pa-101122-093057-600x600.jpg",
+    "desc": "Descriptions 10"
+  },
+  {
+    "name": "Laptop 11",
+    "price": 11000,
+    "image": "https://cdn.tgdd.vn/Products/Images/44/296789/hp-envy-x360-13-bf0090tu-i7-76b13pa-101122-093057-600x600.jpg",
+    "desc": "Descriptions 11"
   }
 ]
