@@ -17,6 +17,7 @@
   import Header from "../../component/Header.svelte";
   import Footer from "../../component/Footer.svelte";
   import invoiceImport from "../../mocks/invoice/invoice.json";
+  import { push } from "svelte-spa-router";
 
   let invoices = invoiceImport;
   let open = false;
@@ -42,7 +43,9 @@
   <Header />
   <Breadcrumb class="px-5 pt-2" style="border-bottom:1px solid lightgray">
     <BreadcrumbItem>
-      <a class="text-black-50 text-decoration-none" href="/">Trang Chủ</a>
+      <a class="text-black-50 text-decoration-none" href="/TuongTacNguoiMay/"
+        >Trang Chủ</a
+      >
     </BreadcrumbItem>
     <BreadcrumbItem active>Giỏ hàng</BreadcrumbItem>
   </Breadcrumb>
@@ -69,7 +72,7 @@
             color="light"
             class="border-1 border-black mx-2 px-4"
             on:click={function () {
-              window.location.href = "/cart";
+              push("/cart");
             }}>Mua lại</Button
           >
         </Col>
@@ -116,7 +119,7 @@
           color="light"
           class="border-1 border-black"
           on:click={() => {
-            window.location.href = "/cart";
+            push("/cart");
           }}>Mua lại</Button
         >
         <Button color="warning" on:click={toggleSuccess}>Hoàn thành</Button>
@@ -134,13 +137,13 @@
           color="light"
           class="border-1 border-black"
           on:click={() => {
-            window.location.href = "/";
+            window.location.href = "/TuongTacNguoiMay";
           }}>Trang chủ</Button
         >
         <Button
           color="danger"
           on:click={() => {
-            window.location.href = "/invoice";
+            location.reload();
           }}>Quay lại</Button
         >
       </ModalFooter>

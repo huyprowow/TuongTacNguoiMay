@@ -13,15 +13,16 @@
     DropdownMenu,
     DropdownToggle,
   } from "sveltestrap";
+  import {push, pop, replace} from 'svelte-spa-router'
   let username = localStorage.getItem("username");
   function go(location) {
     if (location == "/logout") localStorage.removeItem("username");
-    window.location.href = location;
+    push(location);
   }
 </script>
 
 <Navbar id="home_nav" expand="md" class="ps-5" light color="light">
-  <NavbarBrand href="/">Logo</NavbarBrand>
+  <NavbarBrand href="/TuongTacNguoiMay/">Logo</NavbarBrand>
   <Form style="position: relative;">
     <Input
       type="search"
@@ -116,7 +117,7 @@
           </DropdownMenu>
         </ButtonDropdown>
       {:else}
-        <NavLink href="/login" style="color:black;">Đăng nhập/Đăng kí</NavLink>
+        <p on:click={() => go('/login')} on:keydown={(e) => {if (e.key === 'Enter') go('/login')}} style="color:black;">Đăng nhập/Đăng kí</p>
       {/if}
     </NavItem>
   </Nav>

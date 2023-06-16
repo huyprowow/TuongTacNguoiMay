@@ -16,14 +16,15 @@
   import Header from "../../component/Header.svelte";
   import Footer from "../../component/Footer.svelte";
   import productImport from "../../mocks/product/product.json";
-  let radioGroup="1";
+  let radioGroup = "1";
   //implement pagination exacly
-  let product=productImport;
+  let product = productImport;
   let paginationProduct = product.slice(0, 10);
- 
+
   let currentPage = 1;
   let pageSize = 10;
   let totalPage = Math.ceil(product.length / pageSize);
+  let value = 0;
   function changePage(e, page) {
     e.preventDefault();
     currentPage = page;
@@ -44,6 +45,7 @@
   }
   function nextPage(e) {
     e.preventDefault();
+    if(value!==0) return;
     if (currentPage < totalPage) {
       currentPage++;
       paginationProduct = product.slice(
@@ -62,13 +64,75 @@
     );
   }
   function lastPage(e) {
-    e.preventDefault();
+      e.preventDefault();
+      if(value!==0) return;
 
-    currentPage = totalPage;
-    paginationProduct = product.slice(
-      (currentPage - 1) * pageSize,
-      currentPage * pageSize
-    );
+      currentPage = totalPage;
+      paginationProduct = product.slice(
+        (currentPage - 1) * pageSize,
+        currentPage * pageSize
+      );
+  }
+  //sort product
+  function sortDecrease() {
+    if (value === 0) {
+      product.sort((a, b) => {
+        return b.price - a.price;
+      });
+      paginationProduct = product.slice(
+        (currentPage - 1) * pageSize,
+        currentPage * pageSize
+      );
+    } else {
+      paginationProduct.sort((a, b) => {
+        return b.price - a.price;
+      });
+      paginationProduct = paginationProduct.slice(
+        (currentPage - 1) * pageSize,
+        currentPage * pageSize
+      );
+    }
+  }
+  function sortIncrease() {
+    if (value === 0) {
+      product.sort((a, b) => {
+        return a.price - b.price;
+      });
+      paginationProduct = product.slice(
+        (currentPage - 1) * pageSize,
+        currentPage * pageSize
+      );
+    } else {
+      paginationProduct.sort((a, b) => {
+        return a.price - b.price;
+      });
+      paginationProduct = paginationProduct.slice(
+        (currentPage - 1) * pageSize,
+        currentPage * pageSize
+      );
+    }
+  }
+  //filter product
+  function filterProduct(e) {
+    value = +e.target.value;
+    if (value == 0) {
+      paginationProduct = product.slice(
+        (currentPage - 1) * pageSize,
+        currentPage * pageSize
+      );
+    } else if (value == 1) {
+      paginationProduct = product.filter((product) => {
+        return product.price < 5000;
+      });
+    } else if (value == 2) {
+      paginationProduct = product.filter((product) => {
+        return product.price >= 5000 && product.price <= 7000;
+      });
+    } else if (value == 3) {
+      paginationProduct = product.filter((product) => {
+        return product.price > 7000;
+      });
+    }
   }
 </script>
 
@@ -89,10 +153,12 @@
           id="selectPrice"
           class="form-control-sm"
           style="max-width: 200px;"
+          on:change={filterProduct}
         >
-          <option>&lt;5000</option>
-          <option>&lt;500-&gt;7000</option>
-          <option>&gt;7000</option>
+          <option value={0}>Tất cả</option>
+          <option value={1}>&lt;5000</option>
+          <option value={2}>&lt;500-&gt;7000</option>
+          <option value={3}>&gt;7000</option>
         </Input>
       </FormGroup>
     </div>
@@ -105,7 +171,7 @@
           bind:group={radioGroup}
           value="1"
           label="Mới nhât"
-          
+          on:change={sortIncrease}
         />
         <Input
           id="r2"
@@ -113,6 +179,7 @@
           bind:group={radioGroup}
           value="2"
           label="Giá tăng dần"
+          on:change={sortIncrease}
         />
         <Input
           id="r3"
@@ -120,6 +187,7 @@
           bind:group={radioGroup}
           value="3"
           label="Giá giảm dần"
+          on:change={sortDecrease}
         />
       </FormGroup>
     </div>
@@ -197,18 +265,24 @@
         class="text-dark"
       />
     </PaginationItem>
-    {#each [1, 2] as item, index}
+    {#if value === 0}
+      {#each [1, 2] as item, index}
+        <PaginationItem>
+          <PaginationLink
+            on:click={(e) => changePage(e, index + 1)}
+            class={currentPage == index + 1
+              ? "bg-danger text-white"
+              : "text-dark"}
+          >
+            {index + 1}
+          </PaginationLink>
+        </PaginationItem>
+      {/each}
+    {:else}
       <PaginationItem>
-        <PaginationLink
-          on:click={(e) => changePage(e, index + 1)}
-          class={currentPage == index + 1
-            ? "bg-danger text-white"
-            : "text-dark"}
-        >
-          {index + 1}
-        </PaginationLink>
+        <PaginationLink class="bg-danger text-white">1</PaginationLink>
       </PaginationItem>
-    {/each}
+    {/if}
     <PaginationItem>
       <PaginationLink next on:click={(e) => nextPage(e)} class="text-dark" />
     </PaginationItem>

@@ -7,11 +7,16 @@
     Button,
     Container,
   } from "sveltestrap";
+  function handleSubmit(e) {
+    e.preventDefault();
+      localStorage.setItem("username", "huy");
+      window.location.href = "/TuongTacNguoiMay/";
+  }
 </script>
 
 <Container>
   <h1 style="text-align: center;">Đăng kí</h1>
-  <Form>
+  <Form on:submit={handleSubmit}>
     <FormGroup>
       <Label for="username">Tài khoản</Label>
       <Input type="text" id="username" placeholder="Tài khoản" />
@@ -37,6 +42,6 @@
         placeholder="Xác nhận"
       />
     </FormGroup>
-    <Button style="float:right;" color="primary">Đăng kí</Button>
+    <Button style="float:right;" color="primary" >Đăng kí</Button>
   </Form>
 </Container>

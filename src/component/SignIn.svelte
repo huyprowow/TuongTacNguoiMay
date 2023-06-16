@@ -12,7 +12,7 @@
     e.preventDefault();
     if (e.target[0].value == "huy" && e.target[1].value == "huy") {
       localStorage.setItem("username", e.target[0].value);
-      window.location.href = "/";
+      window.location.href = "/TuongTacNguoiMay/";
     }
   }
 </script>

@@ -2,7 +2,7 @@
   import { Nav, NavItem, Button } from "sveltestrap";
   import SignUp from "../component/signUp.svelte";
   import SignIn from "../component/signIn.svelte";
-  export let signup = false;
+  export let signup = true;
   function handleClick(_signup) {
     signup = _signup;
     console.log(signup);

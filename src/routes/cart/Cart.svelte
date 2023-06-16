@@ -17,8 +17,9 @@
   import Header from "../../component/Header.svelte";
   import Footer from "../../component/Footer.svelte";
   import cartImport from "../../mocks/cart/cart.json";
+  import { push } from "svelte-spa-router";
   function goto(path) {
-    window.location.href = path;
+    push(path);
   }
   // increase quantity ,decrease quantity delete item and total price
   let total = 0;
@@ -38,9 +39,11 @@
       total -= carts[0].price;
     }
   }
-  let idDel = carts[0].id;
+  let idDel = cartImport[0].id;
   function deleteItem(id) {
     carts = carts.filter((cart) => cart.id != id);
+    carts = [];
+    toggle();
   }
   let open = false;
   let openPay = false;
@@ -74,7 +77,9 @@
   <Header />
   <Breadcrumb class="px-5 pt-2" style="border-bottom:1px solid lightgray">
     <BreadcrumbItem>
-      <a class="text-black-50 text-decoration-none" href="/">Trang Chủ</a>
+      <a class="text-black-50 text-decoration-none" href="/TuongTacNguoiMay/"
+        >Trang Chủ</a
+      >
     </BreadcrumbItem>
     <BreadcrumbItem active>Đơn mua</BreadcrumbItem>
   </Breadcrumb>
@@ -90,10 +95,7 @@
               <p>{cart.desc}</p>
               <span
                 class="text-decoration-underline text-danger"
-                on:click={toggle}
-                on:keydown={(e) => {
-                  if (e.key === "Enter") deleteItem();
-                }}>Xóa</span
+                on:click={toggle}>Xóa</span
               >
             </div>
             <div>
@@ -127,7 +129,7 @@
               color="light"
               class="border-1 border-black"
               on:click={function () {
-                window.location.href = "/";
+                window.location.href = "/TuongTacNguoiMay/";
               }}>Tiếp tục mua hàng</Button
             >
           </Col>
@@ -149,7 +151,11 @@
         </svg>
       </Button>
       <p class="text-center">Giỏ hàng của bạn đang trống</p>
-      <a href="/" class="btn btn-danger" on:click={() => goto("/")}>Mua ngay</a>
+      <a
+        href="/TuongTacNguoiMay/"
+        class="btn btn-danger"
+        on:click={() => goto("/")}>Mua ngay</a
+      >
     {/if}
     <Modal isOpen={open} {toggle}>
       <ModalHeader {toggle}>Xóa sản phẩm</ModalHeader>
@@ -179,13 +185,13 @@
           color="light"
           class="border-1 border-black"
           on:click={() => {
-            window.location.href = "/";
+            window.location.href = "/TuongTacNguoiMay/";
           }}>Trang chủ</Button
         >
         <Button
           color="danger"
           on:click={() => {
-            window.location.href = "/invoice";
+            push("/invoice");
           }}>Đơn mua</Button
         >
       </ModalFooter>

@@ -1,10 +1,11 @@
 <script>
+  import { push } from "svelte-spa-router";
   import { Row, Col, Card, CardBody, Container } from "sveltestrap";
   export let topProduct;
   export let title;
   export let bgStyle;
   function viewAll() {
-    window.location.href = "/product";
+    push("/product");
   }
 </script>
 
